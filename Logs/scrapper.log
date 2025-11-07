@@ -264,3 +264,35 @@
 2025-11-07 19:28:28,623 [INFO] Adjuntado: 2025-11-07-[perfumarte|Adrián_Pons].csv
 2025-11-07 19:28:28,623 [INFO] Adjuntado: scrapper.log
 2025-11-07 19:28:30,598 [INFO] Correo enviado correctamente.
+2025-11-07 19:46:16,786 [INFO] Scrapeando perfumes de Hombre (paginación)...
+2025-11-07 19:46:16,787 [INFO] Scraping por paginación numérica de Hombre: https://www.perfumarte.com/tienda/perfumes/perfume-de-hombre/
+2025-11-07 19:46:16,787 [INFO] Pidiendo página 1: https://www.perfumarte.com/tienda/perfumes/perfume-de-hombre/?page=1
+2025-11-07 19:46:19,665 [INFO] Pidiendo página 2: https://www.perfumarte.com/tienda/perfumes/perfume-de-hombre/?page=2
+2025-11-07 19:46:22,029 [INFO] Pidiendo página 3: https://www.perfumarte.com/tienda/perfumes/perfume-de-hombre/?page=3
+2025-11-07 19:46:25,069 [INFO] Pidiendo página 4: https://www.perfumarte.com/tienda/perfumes/perfume-de-hombre/?page=4
+2025-11-07 19:46:27,297 [INFO] Pidiendo página 5: https://www.perfumarte.com/tienda/perfumes/perfume-de-hombre/?page=5
+2025-11-07 19:46:29,583 [INFO] Pidiendo página 6: https://www.perfumarte.com/tienda/perfumes/perfume-de-hombre/?page=6
+2025-11-07 19:46:32,439 [INFO] Pidiendo página 7: https://www.perfumarte.com/tienda/perfumes/perfume-de-hombre/?page=7
+2025-11-07 19:46:33,672 [INFO] No se encontraron productos en la página 7. Fin de paginación.
+2025-11-07 19:46:33,672 [INFO] Paginación numérica completada. Total productos: 61
+2025-11-07 19:46:33,672 [INFO] Scraping por paginación numérica de Mujer: https://www.perfumarte.com/tienda/perfumes/perfume-de-mujer/
+2025-11-07 19:46:33,672 [INFO] Pidiendo página 1: https://www.perfumarte.com/tienda/perfumes/perfume-de-mujer/?page=1
+2025-11-07 19:46:36,247 [INFO] Pidiendo página 2: https://www.perfumarte.com/tienda/perfumes/perfume-de-mujer/?page=2
+2025-11-07 19:46:38,658 [INFO] Pidiendo página 3: https://www.perfumarte.com/tienda/perfumes/perfume-de-mujer/?page=3
+2025-11-07 19:46:41,221 [INFO] Pidiendo página 4: https://www.perfumarte.com/tienda/perfumes/perfume-de-mujer/?page=4
+2025-11-07 19:46:43,264 [INFO] Pidiendo página 5: https://www.perfumarte.com/tienda/perfumes/perfume-de-mujer/?page=5
+2025-11-07 19:46:45,316 [INFO] Pidiendo página 6: https://www.perfumarte.com/tienda/perfumes/perfume-de-mujer/?page=6
+2025-11-07 19:46:47,516 [INFO] Pidiendo página 7: https://www.perfumarte.com/tienda/perfumes/perfume-de-mujer/?page=7
+2025-11-07 19:46:49,796 [INFO] Pidiendo página 8: https://www.perfumarte.com/tienda/perfumes/perfume-de-mujer/?page=8
+2025-11-07 19:46:52,471 [INFO] Pidiendo página 9: https://www.perfumarte.com/tienda/perfumes/perfume-de-mujer/?page=9
+2025-11-07 19:46:54,532 [INFO] Paginación numérica completada. Total productos: 98
+2025-11-07 19:46:54,536 [INFO] Scrapeando Body Mist (paginación)...
+2025-11-07 19:46:54,536 [INFO] Scraping por paginación numérica de Body Mist: https://www.perfumarte.com/tienda/perfumes/body-mist/
+2025-11-07 19:46:54,537 [INFO] Pidiendo página 1: https://www.perfumarte.com/tienda/perfumes/body-mist/?page=1
+2025-11-07 19:46:56,491 [INFO] Pidiendo página 2: https://www.perfumarte.com/tienda/perfumes/body-mist/?page=2
+2025-11-07 19:46:57,574 [INFO] No se encontraron productos en la página 2. Fin de paginación.
+2025-11-07 19:46:57,574 [INFO] Paginación numérica completada. Total productos: 3
+2025-11-07 19:46:57,576 [INFO] CSV creado: Resultados/2025-11-07-[perfumarte|Adrián_Pons].csv
+2025-11-07 19:46:57,577 [INFO] Adjuntado: Resultados/2025-11-07-[perfumarte|Adrián_Pons].csv
+2025-11-07 19:46:57,577 [INFO] Adjuntado: Logs/scrapper.log
+2025-11-07 19:46:59,666 [INFO] Correo enviado correctamente.

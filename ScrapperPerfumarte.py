@@ -13,6 +13,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+from email.mime.application import MIMEApplication
 
 
 # ---------------------- CONFIGURACIÓN DE EMAIL ----------------------
@@ -182,35 +183,38 @@ def scrapear_mujer_por_paginacion():
 
 
 def enviar_email(asunto, mensaje, archivo_csv=None, archivo_log=None):
-    """Envía un correo con los archivos adjuntos"""
+    """Envía un correo con los archivos adjuntos (simplificado).
+
+    Adjunta los archivos CSV/log si existen usando MIMEApplication, que maneja
+    bien nombres y contenido binario. Usa sendmail con la lista de destinatarios.
+    """
     try:
         msg = MIMEMultipart()
         msg["From"] = EMAIL_FROM
-        # soporta múltiples destinatarios separados por comas
         destinatarios = [d.strip() for d in EMAIL_TO.split(",") if d.strip()]
         msg["To"] = ", ".join(destinatarios)
         msg["Subject"] = asunto
         msg.attach(MIMEText(mensaje, "plain"))
 
-        for archivo in [archivo_csv, archivo_log]:
-            if archivo and os.path.exists(archivo):
-                ctype, encoding = mimetypes.guess_type(archivo)
-                if ctype is None or encoding is not None:
-                    ctype = "application/octet-stream"
-                maintype, subtype = ctype.split("/", 1)
+        archivos = [archivo_csv, archivo_log]
+        for archivo in archivos:
+            if not archivo:
+                continue
+            if not os.path.exists(archivo):
+                logging.warning(f"Archivo no encontrado para adjuntar: {archivo}")
+                continue
+            try:
                 with open(archivo, "rb") as f:
-                    part = MIMEBase(maintype, subtype)
-                    part.set_payload(f.read())
-                encoders.encode_base64(part)
-                nombre = os.path.basename(archivo)
-                part.add_header("Content-Disposition", f'attachment; filename="{nombre}"')
+                    part = MIMEApplication(f.read(), Name=os.path.basename(archivo))
+                part.add_header("Content-Disposition", "attachment", filename=os.path.basename(archivo))
                 msg.attach(part)
-                logging.info(f"Adjuntado: {nombre}")
+                logging.info(f"Adjuntado: {archivo}")
+            except Exception as e:
+                logging.error(f"No pude adjuntar {archivo}: {e}")
 
         with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
             server.starttls()
             server.login(SMTP_USER, SMTP_PASS)
-            # Usar sendmail para mayor compatibilidad: from, to list, raw string
             server.sendmail(EMAIL_FROM, destinatarios, msg.as_string())
         logging.info("Correo enviado correctamente.")
     except Exception as e:
