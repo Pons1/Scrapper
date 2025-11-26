@@ -7,8 +7,12 @@ import logging
 import mimetypes
 import smtplib
 import requests
+import urllib3
 from bs4 import BeautifulSoup as bs
 from datetime import datetime
+
+# Deshabilitar advertencias de SSL
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
@@ -87,7 +91,7 @@ def scrapear_categoria_por_requests(url_inicio, categoria):
     while url and paginas < max_pages:
         paginas += 1
         logging.info(f"Pidiendo página {paginas}: {url}")
-        r = requests.get(url, headers=headers, timeout=15)
+        r = requests.get(url, headers=headers, timeout=15, verify=False)
         if r.status_code != 200:
             logging.error(f"Error {r.status_code} al pedir {url}")
             break
@@ -154,7 +158,7 @@ def scrapear_por_paginacion_numerica(url_inicio, categoria, max_pages=20):
 
         logging.info(f"Pidiendo página {p}: {url_p}")
         try:
-            r = requests.get(url_p, headers=headers, timeout=15)
+            r = requests.get(url_p, headers=headers, timeout=15, verify=False)
         except Exception as e:
             logging.error(f"Error al pedir {url_p}: {e}")
             break
@@ -225,13 +229,13 @@ def guardar_csv(datos):
     """Guarda los datos en CSV"""
     os.makedirs("Resultados", exist_ok=True)
     fecha = datetime.now().strftime("%Y-%m-%d")
-    ruta = os.path.join("Resultados", f"{fecha}-[perfumarte|Adrián_Pons].csv")
+    ruta = os.path.join("Resultados", f"{fecha}-perfumarte-Adrian_Pons.csv")
     try:
         with open(ruta, "w", newline="", encoding="utf-8") as f:
             w = csv.writer(f)
             # Metadatos (fila 1)
             w.writerow(["Fecha", "Fuente", "Autor"])
-            w.writerow([fecha, "Perfumarte", "Adrián Pons"])
+            w.writerow([fecha, "Perfumarte", "Adrian Pons"])
             w.writerow([])
             # Encabezado de datos
             w.writerow(["Categoría", "Nombre", "Importe", "Divisa", "URL", "URL_Imagen"])
